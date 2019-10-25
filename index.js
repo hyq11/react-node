@@ -8,6 +8,8 @@ const db = require('./src/serve')
 
 let characterRouter = require('./src/routers/character')
 let userRouter = require('./src/routers/login')
+let roleRouter = require('./src/routers/role')
+let memberRouter = require('./src/routers/member')
 
 // 中间件使用
 // app.use('/', (req, res, next) => {
@@ -36,6 +38,8 @@ app.use('/public', express.static(path.join(__dirname, './public/images')))
 
 app.use('/user', userRouter)
 app.use('/character', characterRouter)
+app.use('/role', roleRouter)
+app.use('/member', memberRouter)
 
 app.listen(9527, ()=>{
     console.log('9527 serve is running...')

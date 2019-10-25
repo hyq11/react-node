@@ -3,7 +3,9 @@ var db = mongoose.connection;
 
 //mongoose.connect("mongodb://localhost:端口号/数据库名称");
 
-mongoose.connect('mongodb://localhost:27017/game', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/game', { useNewUrlParser: true, 
+useUnifiedTopology: true,
+useFindAndModify: false });
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {

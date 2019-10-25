@@ -95,11 +95,24 @@ router.post('/login', async (req, res) => {
      const { id } = reqData
 
      try {
+         if(!id) {
+             res.send({
+                code: -1,
+                message: 'id必传'
+             })
+         }
         const result = await userModel.findOneAndUpdate({_id:id}, reqData)
-        res.send({
-            code: 200,
-            message: 'ok'
-        })
+        if(result) {
+            res.send({
+                code: 200,
+                message: 'ok'
+            })
+        } else {
+            res.send({
+                code: 201,
+                message: '修改失败'
+            })
+        }
      }
      catch(err) {
          res.send({
