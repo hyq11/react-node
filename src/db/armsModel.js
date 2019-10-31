@@ -7,8 +7,7 @@ const armsSchema = new Schema({
     weaponsType: { type: String, require: true },
     img: String,
     desc: String,
-    hitDamage: Number 
-
+    hitDamage: Number
 })
 
 const armsModel = mongoose.model('arms', armsSchema)

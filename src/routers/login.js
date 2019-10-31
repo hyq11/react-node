@@ -14,7 +14,12 @@ const userModel = require('../db/userModel')
  * @apiParam {String} email 邮箱
  * @apiParam {String} realname 真是姓名
  *
- * @apiSuccessExample {json} Sucess-Response: { code: 200 , message: 'ok'}
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "code": 200,
+ *      "messgae": "ok"
+ *     }
  */
 
 router.post('/reg', async (req, res) => {
@@ -51,7 +56,12 @@ router.post('/reg', async (req, res) => {
  * @apiParam {String} username 用户名称
  * @apiParam {String} password 密码
  *
- * @apiSuccessExample {json} Sucess-Response: { code: 200 , message: 'ok'}
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "code": 200,
+ *      "messgae": "ok"
+ *     }
  */
 
 router.post('/login', async (req, res) => {
@@ -61,7 +71,9 @@ router.post('/login', async (req, res) => {
         if(result.length) {
             res.send({
                 code: 200,
-                message: 'ok'
+                message: 'ok',
+                token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiaHlxIiwiYWdlIjo5NX0.niu2diPJQNoB1hnt-RvEcalnN7eth2J_2p9aXOdHq0U',
+                result
             })
         }else {
             res.send({
@@ -87,7 +99,12 @@ router.post('/login', async (req, res) => {
  * @apiParam { Date } birth 生日
  * @apiParam { String } email 邮箱
  *
- * @apiSuccessExample {json} Sucess-Response: { code: 200 , message: 'ok'}
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "code": 200,
+ *      "messgae": "ok"
+ *     }
  */
 
  router.post('/update', async (req, res) => {
@@ -129,7 +146,12 @@ router.post('/login', async (req, res) => {
  *
  * @apiParam {String} id 用户id
  *
- * @apiSuccessExample {json} Sucess-Response: { code: 200 , message: 'ok'}
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "code": 200,
+ *      "messgae": "ok"
+ *     }
  */
 
  router.get('/info', async (req, res) => {
@@ -157,7 +179,12 @@ router.post('/login', async (req, res) => {
  *
  * @apiParam {String} id 用户id
  *
- * @apiSuccessExample {json} Sucess-Response: { code: 200 , message: 'ok'}
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "code": 200,
+ *      "messgae": "ok"
+ *     }
  */
 
 router.get('/list', async (req, res) => {

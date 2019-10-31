@@ -1,15 +1,13 @@
 const express = require('express')
 const route = express.Router()
-const roleModel = require('../db/roleModel')
+const skillModel = require('../db/skillModel')
 
 /**
- * @api {get} /role/list 角色列表
+ * @api {get} /skill/list 角色列表
  * @apiName list
- * @apiGroup Role
+ * @apiGroup skill
  * 
- * @apiParam { string } herotype 角色名称
- * @apiParam { string } speciality 特长
- * @apiParam { string } description 描述
+ * @apiParam { string } name 英雄名称
  * 
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
@@ -21,7 +19,7 @@ const roleModel = require('../db/roleModel')
 route.get('/list', async (req, res, next) => {
     const reqData = req.query || {}
     try {
-        const result = await roleModel.find(reqData)
+        const result = await skillModel.find(reqData)
         res.send({
             code: 200,
             result
@@ -32,25 +30,32 @@ route.get('/list', async (req, res, next) => {
     }
 })
 /**
- * @api {get} /role/add 添加
+ * @api {get} /skill/add 添加
  * @apiName add
- * @apiGroup Role
+ * @apiGroup skill
  * 
- * @apiParam { string } herotype 角色名称
- * @apiParam { string } speciality 特长
- * @apiParam { string } description 描述
+ * @apiParam { string } name 英雄名称
+ * @apiParam { Number } ATK 攻击力
+ * @apiParam { Number } DEF 防御力
+ * @apiParam { Number } STR 力量
+ * @apiParam { Number } AGI 敏捷
+ * @apiParam { Number } INT 智力
+ * @apiParam { Number } EXP 经验
+ * @apiParam { Number } LV 等级
+ * @apiParam { Number } HP/LP 生命值
+ * @apiParam { Number } MP 魔法力
  * 
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  *     {
  *       "code": 200,
- *       "message": 'ok'
+ *       "message": "ok"
  *     }
  */
 route.post('/add', async (req, res) => {
-    const reqData = req.body
+    const reqData = req.body.list
     try {
-        await roleModel.insertMany(reqData)
+        await skillModel.insertMany(reqData)
         res.send({
             code: 200,
             message: "ok"
@@ -64,9 +69,9 @@ route.post('/add', async (req, res) => {
     }
 })
 /**
- * @api {get} /role/del 删除
+ * @api {get} /skill/del 删除
  * @apiName del
- * @apiGroup Role
+ * @apiGroup skill
  * 
  * @apiParam { string } id
  * 
@@ -74,13 +79,13 @@ route.post('/add', async (req, res) => {
  *     HTTP/1.1 200 OK
  *     {
  *       "code": 200,
- *       "message": 'ok'
+ *       "message": "ok"
  *     }
  */
 route.post('/del', async (req, res) => {
     const {id} = req.body
     try {
-        const result = await roleModel.remove({_id: id})
+        const result = await skillModel.remove({_id: id})
         if(result.deletedCount>0) {
             res.send({
                 code: 200,
@@ -101,9 +106,9 @@ route.post('/del', async (req, res) => {
     }
 })
 /**
- * @api {get} /role/update 编辑
+ * @api {get} /skill/update 编辑
  * @apiName update
- * @apiGroup Role
+ * @apiGroup skill
  * 
  * @apiParam { string } id
  * 
@@ -111,17 +116,35 @@ route.post('/del', async (req, res) => {
  *     HTTP/1.1 200 OK
  *     {
  *       "code": 200,
- *       "message": 'ok'
+ *       "message": "ok"
  *     }
  */
 route.post('/update', async (req, res) => {
-    const {id, herotype} = req.body
+    const {id, 
+        name, 
+        ATK, 
+        DEF, 
+        STR, 
+        AGI, 
+        INT, 
+        EXP,
+        LV,
+        MP
+    } = req.body
     try {
-        const result = await roleModel.findByIdAndUpdate({_id: id}, {herotype})
+        await skillModel.findByIdAndUpdate({_id: id}, {
+            name, 
+            ATK, 
+            DEF, 
+            STR, 
+            AGI, 
+            INT, 
+            EXP,
+            LV,
+            MP })
         res.send({
             code: 200,
-            message: 'ok',
-            data: result
+            message: 'ok'
         })
     }
     catch(err) {

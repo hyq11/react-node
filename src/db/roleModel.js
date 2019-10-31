@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const roleSchema = new Schema({
-    roletype: { type: String, require: true }, // 英雄分类
+    herotype: { type: String, require: true }, // 英雄分类
     speciality: { type: String, require: true },  // 特长
     description: { type: String }
 })

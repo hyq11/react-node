@@ -4,14 +4,15 @@ const Schema = mongoose.Schema
 
 const productSchema = new Schema({
     productname: { type: String, require: true },
-    price: { type: String, require: true },
-    typename: { type: string, require: true},
-    typeid: { type: String, require: true },
-    img: { type: String , require: true },
-    origin: { type: String, require: true },
-    brand: { type: String, require: true},
-    size: { type: Number, require: true},     //规格
-    weight: { type: Number, require: true}    // 净重
+    price: { type: Number,},
+    typename: { type: String, require: true}, // 分类的名称
+    typeid: { type: String, require: true },   // 商品类型的id
+    img: { type: String},
+    origin: { type: String},
+    brand: { type: String},
+    size: { type: String},     //规格
+    weight: { type: Number},    // 净重
+    description: { type: String}
 })
 //#endregion
 const prodctModel = mongoose.model('products', productSchema)

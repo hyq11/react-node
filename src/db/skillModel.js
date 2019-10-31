@@ -11,7 +11,7 @@ var SkillSchema = new Schema({
     'INT' : { type: Number, require: true }, //智力
     'EXP' : { type: Number, require: true }, // 经验
     'LV' : { type: Number, require: true },  //等级
-    'HP/LP': { type: Number, require: true },// 生命值
+    'HP': { type: Number, require: true, default: 100 },// 生命值
     'MP' : { type: Number, require: true }   // 魔法力
 });
 // 创建一个model
