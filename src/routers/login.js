@@ -9,11 +9,12 @@ const userModel = require('../db/userModel')
  *
  * @apiParam {String} username 用户名称
  * @apiParam {String} password 密码
- * @apiParam {Number} sex 性别
- * @apiParam {Date} birth 生日
+ * @apiParam {String} phone 手机号
  * @apiParam {String} email 邮箱
- * @apiParam {String} realname 真是姓名
+ * @apiParam {String} rolename 角色名称
+ * @apiParam {String} roleId
  *
+ * 
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  *     {
@@ -156,7 +157,6 @@ router.post('/login', async (req, res) => {
 
  router.get('/info', async (req, res) => {
      const {id} = req.query
-     console.log(id)
      try {
         const result = await userModel.findById({_id: id})
         res.send({
@@ -173,7 +173,7 @@ router.post('/login', async (req, res) => {
  })
 
  /**
- * @api {get} /memeber/list 获取会员列表
+ * @api {get} /user/list 获取会员列表
  * @apiName getUserInfo
  * @apiGroup User
  *
@@ -191,7 +191,7 @@ router.get('/list', async (req, res) => {
     try {
        const result = await userModel.find({})
        res.send({
-           code: 201,
+           code: 200,
            result
        })
     }

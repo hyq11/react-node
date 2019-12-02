@@ -4,9 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
-.history
 public
 apidoc
+.history
 
 # testing
 /coverage

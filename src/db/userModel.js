@@ -8,10 +8,11 @@ const userSchema = new Schema({
         timestamps: { createdAt: 'created', updatedAt: 'updated' }
     },
     password: { type: String, require: true },
-    sex: { type: Number, default: 3 }, // 1女， 2男 3密
-    birth: { type: Date, default: null },
+    phone: { type: String, default: 3 },
     email: { type: String, require: true },
-    realname: { type: String, require: true }
+    roleId: { type: String},
+    roleName: { type: String},
+    createDate: { type: Date, default: Date.now()}
 })
 //#endregion
 const userModel = mongoose.model('users', userSchema)
