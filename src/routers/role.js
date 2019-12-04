@@ -81,11 +81,18 @@ route.post('/add', async (req, res) => {
 // 根据这个id, 进行添加
 route.post('/setProperty', async (req, res) => {
     const { id, menus, auth_name } = req.body
+    let sendData = {}
+    if(auth_name) {
+        sendData = {
+            menus, auth_name
+        }
+    } else {
+        sendData = {
+            menus
+        }
+    }
     try {
-        await roleModel.findByIdAndUpdate({_id: id}, {
-            menus,
-            auth_name
-        })
+        await roleModel.findByIdAndUpdate({_id: id}, sendData)
         res.send({
             code: 200,
             message: 'ok'
@@ -173,8 +180,8 @@ route.post('/del', async (req, res) => {
  *      }
  */
 // 根据这个id, 进行添加
-route.post('/getProperty', async (req, res) => {
-    const { id } = req.body
+route.get('/getProperty', async (req, res) => {
+    const { id } = req.query
     try {
         const result = await roleModel.findById({_id: id})
         res.send({

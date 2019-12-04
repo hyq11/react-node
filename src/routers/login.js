@@ -119,7 +119,7 @@ router.post('/login', async (req, res) => {
                 message: 'id必传'
              })
          }
-        const result = await userModel.findOneAndUpdate({_id:id}, reqData)
+        const result = await userModel.findByIdAndUpdate({_id:id}, reqData)
         if(result) {
             res.send({
                 code: 200,

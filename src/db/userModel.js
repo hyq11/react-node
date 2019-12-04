@@ -10,8 +10,8 @@ const userSchema = new Schema({
     password: { type: String, require: true },
     phone: { type: String, default: 3 },
     email: { type: String, require: true },
-    roleId: { type: String},
-    roleName: { type: String},
+    roleId: { type: String, default: ''},
+    roleName: { type: String, default: ''},
     createDate: { type: Date, default: Date.now()}
 })
 //#endregion
