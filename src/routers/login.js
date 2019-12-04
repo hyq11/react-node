@@ -202,5 +202,32 @@ router.get('/list', async (req, res) => {
         })
     }
 })
+ /**
+ * @api {get} /user/remove 获取会员列表
+ * @apiName remove
+ * @apiGroup User
+ *
+ * @apiParam {String} id 用户id
+ *
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "code": 200,
+ *      "messgae": "ok"
+ *     }
+ */
+
+router.post('/remove', async (req, res) => {
+    let { id } = req.body
+    try {
+        await userModel.findByIdAndRemove({_id: id})
+    }
+    catch(err) {
+        res.send({
+            code: 201,
+            message: err
+        })
+    }
+})
 
 module.exports = router
