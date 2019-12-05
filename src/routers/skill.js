@@ -53,7 +53,8 @@ route.get('/list', async (req, res, next) => {
  *     }
  */
 route.post('/add', async (req, res) => {
-    const reqData = req.body.list
+    const reqData = req.body
+    console.log(reqData)
     try {
         await skillModel.insertMany(reqData)
         res.send({
@@ -152,6 +153,34 @@ route.post('/update', async (req, res) => {
             code: -1,
             message: err
         })
+    }
+})
+/**
+ * @api {get} /skill/info 获取角色详情
+ * @apiName info
+ * @apiGroup skill
+ * 
+ * @apiParam { string } _id 英雄iD
+ * 
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "code": 200,
+ *       "result": []
+ *     }
+ */
+route.get('/info', async (req, res, next) => {
+    const { id } = req.query
+    console.log(id)
+    try {
+        const result = await skillModel.findById({_id:id})
+        res.send({
+            code: 200,
+            result
+        })
+    }
+    catch(err) {
+        next(err)
     }
 })
 module.exports = route
