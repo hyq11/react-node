@@ -1,6 +1,7 @@
 var express = require('express')
 var router = express.Router()
 const userModel = require('../db/userModel')
+const { creatToken, checkToken } = require('../../md5')
 
 /**
  * @api {post} /user/reg 注册用户信息
@@ -70,11 +71,14 @@ router.post('/login', async (req, res) => {
     try {
         const  result = await userModel.find(reqData)
         if(result.length) {
+            let token = creatToken({
+                username: result.username
+            })
             res.send({
                 code: 200,
                 message: 'ok',
-                token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiaHlxIiwiYWdlIjo5NX0.niu2diPJQNoB1hnt-RvEcalnN7eth2J_2p9aXOdHq0U',
-                result
+                token,
+                result: result[0]
             })
         }else {
             res.send({

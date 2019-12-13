@@ -110,7 +110,7 @@ route.get('/detail', async (req, res)=>{
     const {id} = req.query
     try{
 
-        const result = await productModel.find({_id: id})
+        const result = await productModel.findById({_id: id})
         console.log(result)
         res.send({
             code: 200,
@@ -148,6 +148,27 @@ route.get('/setPrice', async (req, res)=>{
     }
     try{
         const result = await productModel.findByIdAndUpdate({id}, {price})
+        res.send({
+            code: 200,
+            message: 'ok'
+        })
+    } catch(err) {
+        res.send({
+            code: -1,
+            message: err.message
+        })
+    }
+})
+route.post('/del', async (req, res)=>{
+    const {id}= req.body
+    if(!id) {
+        res.send({
+            code: 201,
+            message: 'id必传'
+        })
+    }
+    try{
+       await productModel.findByIdAndRemove({_id: id})
         res.send({
             code: 200,
             message: 'ok'

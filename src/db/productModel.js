@@ -7,7 +7,7 @@ const productSchema = new Schema({
     price: { type: Number,},
     typename: { type: String, require: true}, // 分类的名称
     typeid: { type: String, require: true },   // 商品类型的id
-    img: { type: String},
+    img: { type: Array},
     origin: { type: String},
     brand: { type: String},
     size: { type: String},     //规格
