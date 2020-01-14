@@ -2,6 +2,7 @@ var express = require('express')
 var router = express.Router()
 const userModel = require('../db/userModel')
 const { creatToken, checkToken } = require('../../md5')
+const boxen = require('boxen');
 
 /**
  * @api {post} /user/reg 注册用户信息
@@ -68,8 +69,9 @@ router.post('/reg', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     const reqData = req.body
+    console.log(reqData)
     try {
-        const  result = await userModel.find(reqData)
+        const result = await userModel.find(reqData)
         if(result.length) {
             let token = creatToken({
                 username: result.username
@@ -92,6 +94,7 @@ router.post('/login', async (req, res) => {
             message: err
         })
     }
+    console.log(boxen('unicorn', {padding: 1}))
 })
 /**
  * @api {post} /user/update 用户信息编辑

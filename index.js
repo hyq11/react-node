@@ -15,6 +15,7 @@ let skillRouter = require('./src/routers/skill')
 let productRouter = require('./src/routers/product')
 let category = require('./src/routers/category')
 let upload = require('./upload')
+let upload2 = require('./src/routers/upload')
 
 // 中间件使用
 // app.use('/', (req, res, next) => {
@@ -50,6 +51,7 @@ app.use('/skill', skillRouter)
 app.use('/product', productRouter)
 app.use('/category', category)
 app.use('/upload', upload)
+app.use('/upload2', upload2)
 
 app.use((err, req, res, next) => {
       if(err) {

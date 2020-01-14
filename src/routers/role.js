@@ -105,37 +105,6 @@ route.post('/setProperty', async (req, res) => {
     }
 })
 /**
- * @api {post} /role/remove 删除
- * @apiGroup role
- * @apiName remove
- * 
- * @apiParam {Strig} _id 用户的ID
- * @apiParam {Array} menus 菜单数据
- * @apiParam {String} auth_name 授权人
- * 
- * @apiSuccessExample Success-Response: 
- *      {
- *          "code": 200,
- *          "message": 'ok'
- *      }
- */
-// 根据这个id, 进行添加
-route.post('/del', async (req, res) => {
-    const { id } = req.body
-    try {
-        await roleModel.findByIdAndRemove({_id: id})
-        res.send({
-            code: 200,
-            message: 'ok'
-        })
-    } catch(err) {
-        res.send({
-            code: 201,
-            message: err.message
-        })
-    }
-})
-/**
  * @api {post} /role/del 删除
  * @apiGroup role
  * @apiName remove
@@ -179,7 +148,7 @@ route.post('/del', async (req, res) => {
  *          "message": 'ok'
  *      }
  */
-// 根据这个id, 进行添加
+// 根据这个id, 获取数据
 route.get('/getProperty', async (req, res) => {
     const { id } = req.query
     try {
